@@ -4,7 +4,7 @@ import time
 import numpy as np
 from skimage.metrics import structural_similarity as ssim
 
-# Belirtilen klasörden resimleri yükleriz
+# Belirtilen klasörden resimleri yükleris
 def load_images_from_folder(folder):
     images = []
     for filename in os.listdir(folder):
@@ -14,7 +14,7 @@ def load_images_from_folder(folder):
     return images
 
 
-# İki resim arasındaki benzerlik skorunu hesaplarız
+# İki resim arasındaki benzerlik skorunu hesaplarıs
 def calculate_similarity(imageA, imageB):
     imageA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
     imageB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
@@ -29,7 +29,7 @@ def calculate_similarity(imageA, imageB):
     return ssim(imageA, imageB)
 
 
-# Görüntüler arasındaki benzerlik skorlarını buluruz
+# Görüntüler arasındaki benzerlik skorlarını bulurus
 def find_similar_images(images):
     similarity_list = []
     for i in range(len(images)):
@@ -42,22 +42,21 @@ def find_similar_images(images):
 
     return similarity_list
 
-# Belirtilen klasördeki görüntüler arasında benzer olanları buluruz
+# Belirtilen klasördeki görüntüler arasında benzer olanları bulurus
 def find_similar_images_in_folder(folder_path):
     images = load_images_from_folder(folder_path)
     similarity_list = find_similar_images(images)
     return similarity_list
 
-#asagıdaki folder_path degiskenine karsılastırmak istediginiz resimlerin bulundugu dosyanın konumunu yazınız
-folder_path =  r"C:\Users\yusuf\OneDrive\Masaüstü\AAKS2_2\ALGORTIMA_ANALIZI_ODEV_SOURCES-20230523T105200Z-001"
+folder_path =  r"C:\Users\leyla\Downloads\pythonProject2\ALGORTIMA_ANALIZI_ODEV_SOURCES"
 
-baslama_zamani = time.time()# fonksiyonu başlatmadan önceki anın zamanını alır
+baslama_zamani = time.time()
 similarity_list = find_similar_images_in_folder(folder_path)
-bitis_zamani = time.time()# fonksiyonun bitişindeki anın zamanını alır
+bitis_zamani = time.time()
 
-# Benzerlik skoru tam 1 olan görüntü çiftlerini ekranda yazdırırız
+# Benzerlik skoru tam 1 olan görüntü çiftlerini ekranda yazdırırıs
 for i, j, score in similarity_list:
-    if score == 1.0: # score değerinin 1 olanlar yazılacaktır eğer belli bir seviyeden yüksek olanları yazdırmak isterseniz >= 0.8 benzeri bir yazımla bunu gerçekleştirebilirsiniz.
+    if score == 1.0:
         print(f"Görüntüler {i} ve {j} benzerlik skoru {score} ile benzer.")
 
 # Toplamda kaç karşılaştırma yapıldığını hesaplarıs
@@ -67,4 +66,5 @@ print(f"Görseller arasındaki toplam karşılaştırmalar: {int(comparisons)}")
 
 # Hesaplamanın ne kadar süre aldığını yazdırırıs
 print(f"Harcanan süre: {bitis_zamani - baslama_zamani} saniye")
+
 
